@@ -1,0 +1,38 @@
+{
+  "name": "mcpshield",
+  "version": "1.0.0",
+  "description": "MCPShield CLI — Scan MCP servers for security vulnerabilities",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "mcpshield": "./bin/mcpshield.js"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "ora": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["mcp", "security", "scanner", "model-context-protocol", "ai-security"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MCPShield-Dev/mcpshield"
+  },
+  "homepage": "https://www.mcpshield.co"
+}
