@@ -1,6 +1,6 @@
 {
-  "name": "mcpshield",
-  "version": "1.0.0",
+  "name": "mcpshield-cli",
+  "version": "2.0.0",
   "description": "MCPShield CLI — Scan MCP servers for security vulnerabilities",
   "type": "module",
   "main": "./dist/index.js",

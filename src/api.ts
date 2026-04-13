@@ -22,16 +22,18 @@ export async function scanRemote(
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
-      "User-Agent": "mcpshield-cli/1.0.0",
+      "User-Agent": "mcpshield-cli/2.0.0",
     },
     body: JSON.stringify({ target, type }),
+    signal: AbortSignal.timeout(120_000),
   });
 
-  const data = await res.json();
+  const data = (await res.json()) as Record<string, unknown>;
 
   if (!res.ok) {
-    throw new ApiError(data.error ?? `Request failed with status ${res.status}`, res.status);
+    const errMsg = typeof data.error === "string" ? data.error : `Request failed with status ${res.status}`;
+    throw new ApiError(errMsg, res.status);
   }
 
-  return data as ScanResult;
+  return data as unknown as ScanResult;
 }

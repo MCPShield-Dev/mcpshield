@@ -10,7 +10,7 @@ const program = new Command();
 program
   .name("mcpshield")
   .description("MCPShield CLI — Scan MCP servers for security vulnerabilities")
-  .version("1.0.0");
+  .version("2.0.0");
 
 // Auth command
 program
@@ -43,6 +43,12 @@ program
       process.exit(1);
     }
 
+    const severityOrder = ["critical", "high", "medium", "low", "info"];
+    if (!severityOrder.includes(opts.severity)) {
+      console.error(chalk.red(`Invalid severity "${opts.severity}". Must be one of: ${severityOrder.join(", ")}`));
+      process.exit(1);
+    }
+
     const apiKey = getApiKey();
     if (!apiKey) {
       console.error(chalk.red("No API key found. Run:"));
@@ -62,7 +68,6 @@ program
         console.log(JSON.stringify(result, null, 2));
       } else {
         // Filter by severity
-        const severityOrder = ["critical", "high", "medium", "low", "info"];
         const minIndex = severityOrder.indexOf(opts.severity);
         if (minIndex > 0) {
           result.findings = result.findings.filter(
